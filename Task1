@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinar Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: mediumseagreen;
+            border: 2px solid black;
+        }
+            .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+      h1 {
+            text-align: center;
+            border: 2px solid black;
+            padding: 10px;
+            background-color: lightblue;
+            color: #333;
+        }
+
+        .sub-heading {
+            text-align: center;
+            color: #666;
+        }
+
+        .webinar-card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .webinar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .webinar-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .webinar-card-content {
+            padding: 20px;
+        }
+
+        .webinar-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .register-button {
+            display: block;
+            margin: 10px auto 0;
+            padding: 10px 20px;
+            background-color: blue;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+        .registration-form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            display: none;
+        }
+
+        .registration-form {
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Webinar Registration</h1>
+    <p class="sub-heading">Register for the upcoming webinars conducted by our community</p>
+
+    <div class="webinar-card">
+        <img src="https://urbeuniversity.edu/post_assets/Le9zsr8bQmv7gmZW40UXiVaPsGcpVwaY65mw28tU.webp"
+             alt="Artificial Intelligence">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Artificial Intelligence</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+
+    <div class="webinar-card">
+        <img src="https://miro.medium.com/v2/resize:fit:1400/1*cG6U1qstYDijh9bPL42e-Q.jpeg" alt="machine learning">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Machine Learning</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+
+    <div class="webinar-card">
+        <img src="https://www.naukri.com/campus/career-guidance/wp-content/uploads/2023/11/what-is-data-science.jpg" alt="Data science">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Data Science</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+
+    <div class="webinar-card">
+        <img src="https://images.shiksha.com/mediadata/images/articles/1709716893phpMHu9M9.jpeg" alt="Ethical Hacking">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Ethical Hacking</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+
+    <div class="webinar-card">
+        <img src="https://www.witsdigital.com/wits_assets/blog/1577433743_cloud-computing.png" alt="Cloud Computing">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Cloud Computing</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+
+    <div class="webinar-card">
+        <img src="https://www.springboard.com/blog/wp-content/uploads/2021/06/shutterstock_505066678-scaled-scaled.jpg" alt="cyber security">
+        <div class="webinar-card-content">
+            <h2 class="webinar-title">Cyber Security</h2>
+            <a href="#" class="register-button">Register</a>
+        </div>
+    </div>
+</div>
+<div id="registrationForm" class="registration-form-container">
+    <span class="close" onclick="closeRegistrationForm()">&times;</span>
+    <div class="registration-form">
+        <h2 id="webinarTitle"></h2>
+        <form id="registrationDetails">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="college">College Name:</label><br>
+            <input type="text" id="college" name="college"><br>
+            <label for="contact">Contact Number:</label><br>
+            <input type="text" id="contact" name="contact"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <input type="button" value="Submit" onclick="submitRegistrationForm()">
+        </form>
+    </div>
+</div>
+<script>
+    function showRegistrationForm(webinarTitle, event) {
+        document.getElementById("webinarTitle").innerText = "Registration for " + webinarTitle;
+        const rect = event.target.getBoundingClientRect();
+        const registrationForm = document.getElementById("registrationForm");
+        registrationForm.style.top = rect.top + rect.height + "px";
+        registrationForm.style.left = rect.left + "px";
+        registrationForm.style.display = "block";
+    }
+  function closeRegistrationForm() {
+        document.getElementById("registrationForm").style.display = "none";
+    }
+function submitRegistrationForm() {
+        closeRegistrationForm();
+    }
+    document.querySelectorAll('.register-button').forEach(button => {
+        button.addEventListener('click', function(event) {
+            const webinarTitle = this.parentNode.querySelector('.webinar-title').innerText;
+            showRegistrationForm(webinarTitle, event);
+        });
+    });
+</script>
+</body>
+</html>
